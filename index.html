@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Chatbot on pure JavaScript by Itchief</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      :root {
+        scroll-behavior: smooth;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 20px;
+    }
+  </style>
+  <link rel="stylesheet" href="/chatbot/chatbot.css">
+</head>
+
+<body>
+
+<h1>«Chatbot»</h1>
+
+<!-- chatbot__btn -->
+<div class="chatbot__btn">
+  <div class="chatbot__tooltip d-none">I have a question?</div>
+</div>
+
+<!-- FingerPrint JS -->
+<script src="/chatbot/fp2.js"></script>
+<!-- ChatBot JS -->
+<script src="/chatbot/chatbot.js"></script>
+
+<!--  <script type="text/javascript">-->
+<!--    document.write(Date());-->
+<!--  </script>-->
+
+<script>
+
+  // конфигурация чат-бота
+  const configChatbot = {};
+  // CSS-селектор кнопки, посредством которой будем вызывать окно диалога с чат-ботом
+  configChatbot.btn = '.chatbot__btn';
+  // ключ для хранения отпечатка браузера
+  configChatbot.key = 'fingerprint';
+  // реплики чат-бота
+  configChatbot.replicas = {
+    bot: {
+      0: { content: ['Hi!', 'I am cool bot! '], human: [0, 1, 2] },
+      1: { content: 'I\'m glad too, what\'s your name?', human: [3] },
+      2: { content: 'What is your name?', human: [3] },
+      3: { content: '{{name}}, what are you interested in?', human: [4, 5] },
+      4: { content: '{{name}}, to avoid boredom.', human: [6] },
+      5: { content: "{{name}}, what is your question?", human: [7] },
+      6: { content: '{{name}}, we got your question! What is the best way to contact you?', human: [8, 9] },
+      7: { content: '{{name}}, let me know your phone number', human: [10] },
+      8: { content: '{{name}}, what is your email?', human: [10] },
+      9: { content: 'Ready! {{name}}, we will contact you shortly on {{contact}}. Have a nice day!', human: [6] },
+      10: { content: 'Как мне к Вам обращаться?', human: [11] },
+      11: { content: '{{name}}, что Вас интересует?', human: [12, 13] },
+      12: { content: '{{name}}, что бы поговорить.', human: [14] },
+      13: { content: "{{name}}, какой у Вас вопрос?", human: [15] },
+      14: { content: '{{name}}, мы получили Ваш вопрос! Скажите, как с Вами удобнее будет связаться?', human: [16, 17] },
+      15: { content: '{{name}}, укажите пожалуйста ваш телефон', human: [18] },
+      16: { content: '{{name}}, укажите пожалуйста ваш Email ниже', human: [18] },
+      17: { content: 'Готово! {{name}}, мы свяжемся с вами в ближайшее время по {{contact}}. Всего хорошего!', human: [14] },
+      18: { content: '{{name}}, what are you interested in?', human: [19, 20, 22] },
+      19: { content: '<a href="https://localcoding.us/" target="_blank">localcoding.us</a>', human: [21]},
+      20: { content: 'The time is <a ', human: [21]},
+      21: { content: 'Today is ', human: [21]},
+    },
+    human: {
+      0: { content: 'Hi! I\'m glad to meet you', bot: 1 },
+      1: { content: 'Привет!', bot: 10 },
+      2: { content: 'Yo, cool bot!', bot: 2 },
+      3: { content: '', bot: 18, name: 'name' },
+      4: { content: 'I am wondering what this bot is for', bot: 4 },
+      5: { content: 'I want to leave a request to the chatbot developer', bot: 5 },
+      6: { content: 'To the beginning', bot: 3 },
+      7: { content: '', bot: 6, name: '' },
+      8: { content: 'by phone', bot: 7 },
+      9: { content: 'by email', bot: 8 },
+      10: { content: '', bot: 9, name: 'contact' },
+      11: { content: '', bot: 11, name: 'name' },
+      12: { content: 'Меня интересует, для чего этот бот?', bot: 12 },
+      13: { content: 'Хочу оставить запрос разработчику чат-бота', bot: 13 },
+      14: { content: 'В начало', bot: 11 },
+      15: { content: '', bot: 14, name: '' },
+      16: { content: 'по телефону', bot: 15 },
+      17: { content: 'по email', bot: 16 },
+      18: { content: '', bot: 17, name: 'contact' },
+      19: { content: 'What day is today?', bot: 19 },
+      20: { content: 'What time is now?', bot: 20 },
+      21: { content: 'To the beginning', bot: 18 },
+      22: { content: 'Cool site', bot: 19},
+    }
+  }
+
+  // корневой элемент
+  configChatbot.root = SimpleChatbot.createTemplate();
+  // URL chatbot.php
+  configChatbot.url = '/chatbot/chatbot.php';
+  // создание SimpleChatbot
+  let chatbot = new SimpleChatbot(configChatbot);
+  // при клике по кнопке configChatbot.btn
+  document.querySelector(configChatbot.btn).onclick = function (e) {
+    this.classList.add('d-none');
+    const $tooltip = this.querySelector('.chatbot__tooltip');
+    if ($tooltip) {
+      $tooltip.classList.add('d-none');
+    }
+    configChatbot.root.classList.toggle('chatbot_hidden');
+    chatbot.init();
+  };
+
+  // добавление ключа для хранения отпечатка браузера в LocalStorage
+  let fingerprint = localStorage.getItem(configChatbot.key);
+  if (!fingerprint) {
+    Fingerprint2.get(function (components) {
+      fingerprint = Fingerprint2.x64hash128(components.map(function (pair) {
+        return pair.value
+      }).join(), 31)
+      localStorage.setItem(configChatbot.key, fingerprint)
+    });
+  }
+
+  // подсказка для кнопки
+  const $btn = document.querySelector(configChatbot.btn);
+  $btn.addEventListener('mouseover', function (e) {
+    const $tooltip = $btn.querySelector('.chatbot__tooltip');
+    if (!$tooltip.classList.contains('chatbot__tooltip_show')) {
+      $tooltip.classList.remove('d-none');
+      setTimeout(function () {
+        $tooltip.classList.add('chatbot__tooltip_show');
+      }, 0);
+    }
+  });
+  $btn.addEventListener('mouseout', function (e) {
+    const $tooltip = $btn.querySelector('.chatbot__tooltip');
+    if ($tooltip.classList.contains('chatbot__tooltip_show')) {
+      $tooltip.classList.remove('chatbot__tooltip_show');
+      setTimeout(function () {
+        $tooltip.classList.add('d-none');
+      }, 200);
+    }
+  });
+
+  setTimeout(function () {
+    const tooltip = document.querySelector('.chatbot__tooltip');
+    tooltip.classList.add('chatbot__tooltip_show');
+    setTimeout(function () {
+      tooltip.classList.remove('chatbot__tooltip_show');
+    }, 10000)
+  }, 10000);
+</script>
+
+</body>
+
+</html>
