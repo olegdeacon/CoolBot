@@ -14,9 +14,12 @@ if (!Element.prototype.closest) {
   };
 }
 
-function getDateTime() {
-  const now = new Date();
-  return now.toLocaleString() + 'GMT ' + (-now.getTimezoneOffset() < 0 ? '-' : '+') + Math.abs(now.getTimezoneOffset() / 60);
+function getDate() {
+  return new Date().toLocaleDateString();
+}
+
+function getTime() {
+  return new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
 }
 
 /*
