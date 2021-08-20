@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5accfc68-7854-4ce2-9e61-a698249b55e1" name="Changes" comment="">
+    <list default="true" id="5accfc68-7854-4ce2-9e61-a698249b55e1" name="Changes" comment="Wed, Aug 18, 22:06:30">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatbot/chatbot.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatbot/chatbot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getDate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatbot/fp2.js" beforeDir="false" afterPath="$PROJECT_DIR$/chatbot/fp2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index-replicas-in-json.html" beforeDir="false" afterPath="$PROJECT_DIR$/index-replicas-in-json.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +23,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="2" />
+  </component>
   <component name="ProjectId" id="1wuv4ipk283NtZg3mM592OZCbme" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -33,14 +37,28 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.fp2.js">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CoolBot/index.html?_ij_reload" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="chatbot.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/chatbot/chatbot.js" working-dir="$PROJECT_DIR$/chatbot">
+      <method v="2" />
+    </configuration>
+    <configuration name="fp2.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/chatbot/fp2.js" working-dir="$PROJECT_DIR$/chatbot">
+      <method v="2" />
+    </configuration>
     <configuration name="getDate.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/getDate.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.fp2.js" />
+        <item itemvalue="Node.js.chatbot.js" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.getDate.js" />
       </list>
     </recent_temporary>
@@ -59,8 +77,23 @@
       <workItem from="1629334297073" duration="392000" />
       <workItem from="1629334700911" duration="4081000" />
       <workItem from="1629341524391" duration="391000" />
-      <workItem from="1629341951552" duration="3827000" />
+      <workItem from="1629341951552" duration="5653000" />
+      <workItem from="1629390581924" duration="2133000" />
+      <workItem from="1629414483393" duration="128000" />
+      <workItem from="1629414655291" duration="6000" />
+      <workItem from="1629415409057" duration="59000" />
+      <workItem from="1629415841211" duration="158000" />
+      <workItem from="1629416258334" duration="300000" />
+      <workItem from="1629416598707" duration="10637000" />
     </task>
+    <task id="LOCAL-00001" summary="Wed, Aug 18, 22:06:30">
+      <created>1629346026563</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1629346026563</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,5 +110,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Wed, Aug 18, 22:06:30" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wed, Aug 18, 22:06:30" />
   </component>
 </project>

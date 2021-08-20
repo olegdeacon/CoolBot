@@ -22,6 +22,21 @@ function getTime() {
   return new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
 }
 
+function date_time(){
+  const current_datetime = new Date();
+  //const day = zero_first_format(current_datetime.getDate());
+  //const month = zero_first_format(current_datetime.getMonth() + 1);
+  //const year = current_datetime.getFullYear();
+  const hours = zero_first_format(current_datetime.getHours());
+  const minutes = zero_first_format(current_datetime.getMinutes());
+  const seconds = zero_first_format(current_datetime.getSeconds());
+
+  return +hours+":"+minutes+":"+seconds;
+}
+setInterval(function () {
+  document.getElementById('current_date_time').innerHTML = date_time();
+}, 1000);
+
 /*
   btn - селектор для выбора кнопки
   key - ключ для хранения отпечатка браузера
@@ -75,7 +90,7 @@ SimpleChatbot.prototype.init = function () {
       html.push(SimpleChatbot.templateItem(replicas.data[i]));
       i++;
     }
-    var $container = this._$root.querySelector('.chatbot__items');
+    const $container = this._$root.querySelector('.chatbot__items');
     $container.insertAdjacentHTML('beforeend', html.join(''));
 
     this._outputContent(0);
@@ -259,7 +274,7 @@ SimpleChatbot.prototype._eventHandlerClick = function (e) {
   }
   e.preventDefault();
   // получаем последние сообщения бота
-  var _this = this;
+  const _this = this;
   var $botWrapper = document.querySelectorAll('.chatbot__item_bot');
   var $botWrapperLast = $botWrapper[$botWrapper.length - 1];
   var $prev = $botWrapperLast;
